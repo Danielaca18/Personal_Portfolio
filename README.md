@@ -5,9 +5,9 @@
   </p>
 </p>
 
-Schedule             |  Assignment
+Home             |  Projects
 :-------------------------:|:-------------------------:
-![]()  |  ![]()
+![](https://github.com/Danielaca18/Personal_Portfolio/blob/readme-images/home_preview.PNG)  |  ![](https://github.com/Danielaca18/Personal_Portfolio/blob/readme-images/projects_preview.png)
 
 ## Pages
 
