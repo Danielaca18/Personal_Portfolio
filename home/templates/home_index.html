@@ -3,16 +3,70 @@
 {% block page_content %}
     <div class="container py-5">
         <div class="row">
-        <div class="col-md-4">
-            <div class="text-center">
-            <img src="{{ person.image.url }}" class="rounded-circle" width="150" height="150">
-            <h1 class="mt-3">{{ person.name }}</h1>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <img src="{% static person.image %}" class="rounded-circle" width="150" height="150">
+                    <h1 class="mt-3">{{ person.name }}</h1>
+                    <p style="font-size: 14px">{{ person.phone }}</br>
+                        <a href="mailto: {{person.email}}">{{ person.email }}</a></br>
+                        <a href="http://{{ person.site }}">Github</a></p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                </br></br>
+                <h2 style="font-size: 24px;">Objective</h2>
+                <p>{{ person.objective }}</p>
             </div>
         </div>
-        <div class="col-md-8">
-            <h2 class="mb-3 font-weight-normal" style="font-size: 24px;">Objective</h2>
-            <p>{{ person.objective }}</p>
+    </div>
+    <div class="row">
+    <div class="col-sm-8 left">
+        <h2 style="font-size: 24px;">Education</h2>
+        <ul>
+            {% for school in person.schools.all %}
+                <li>
+                    <h5 class="mb-3 font-weight-normal" style="display: inline-block; font-size:20px">{{ school.name }} - </h5>
+                    <h5 class="mb-3 font-weight-normal" style="display: inline-block; font-size:19px">{{ school.degree }}</h6>
+                    <h6 class="mb-3 font-weight-normal" style="display: inline-block; font-size:14px">&emsp;&emsp; Expected: {{school.graduation_year}}</h6>
+                    <p>{{ school.summary }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <h2 style="font-size: 24px;">Experience</h2>
+        <ul>
+            {% for job in person.jobs.all %}
+                <li>
+                    <h5 class="mb-3 font-weight-normal" style="display: inline-block; font-size:20px">{{ job.company }} - </h5>
+                    <h5 class="mb-3 font-weight-normal" style="display: inline-block; font-size:20px">{{ job.title }}</h5>
+                    <h6 class="mb-3 font-weight-normal" style="display: inline-block; font-size:14px">&emsp;&emsp; {{job.start_date}} - 
+                        {%if job.end_date%} {{job.end_date}} {% else %} Ongoing {% endif %}</h6>
+                    <p>{{ job.summary }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <h2 style="font-size: 24px;">Projects</h2>
+        <ul>
+            {% for project in person.projects.all %}
+                <li>
+                    <h5 class="mb-3 font-weight-normal" style="display: inline-block; font-size:20px">{{ project.title }}</h5>
+                    <p>{{ project.short_description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="col-sm-4 right">
+        <div class="section">
+            <h2 class="text-center" style="font-size: 24px;">Skills</h2>
+            <ul>
+                {% for skill in person.skills.all %}
+                    <li>
+                        <h7 class="mb-3"><b>{{ skill.name }}</b></h5>
+                        <p>{{ skill.summary }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
-        </div>
+    </div>
     </div>
 {% endblock %}
